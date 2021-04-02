@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hymns",
+  "info": {
+    "name": "hymn",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "releaseDate": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.date-stamp"
+    },
+    "firstLine": {
+      "type": "string"
+    },
+    "lyric": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hymn.lyric"
+    },
+    "sheetMusic": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "artist": {
+      "model": "artist",
+      "via": "hymns"
+    },
+    "language": {
+      "model": "language"
+    },
+    "tune": {
+      "model": "tune"
+    },
+    "minorTunes": {
+      "collection": "tune"
+    },
+    "translations": {
+      "collection": "hymn",
+      "via": "originalVersion"
+    },
+    "originalVersion": {
+      "model": "hymn",
+      "via": "translations"
+    }
+  }
+}

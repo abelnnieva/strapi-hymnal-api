@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_hymn_lyrics",
+  "info": {
+    "name": "lyric",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "verse",
+        "chorus"
+      ],
+      "default": "verse",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "links",
+  "info": {
+    "name": "link"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "url": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "external": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

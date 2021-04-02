@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_track_introductions",
+  "info": {
+    "name": "introduction",
+    "icon": "child",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "startTime": {
+      "type": "string",
+      "default": "00:00:00.000",
+      "required": true,
+      "regex": "([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3})"
+    },
+    "duration": {
+      "type": "string",
+      "regex": "([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3})",
+      "required": true
+    }
+  }
+}

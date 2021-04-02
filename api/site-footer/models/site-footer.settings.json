@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_footers",
+  "info": {
+    "name": "siteFooter",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "menuItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link"
+    },
+    "copyright": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

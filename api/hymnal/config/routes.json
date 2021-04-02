@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/hymnals",
+      "handler": "hymnal.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hymnals/count",
+      "handler": "hymnal.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hymnals/:id",
+      "handler": "hymnal.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/hymnals",
+      "handler": "hymnal.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/hymnals/:id",
+      "handler": "hymnal.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/hymnals/:id",
+      "handler": "hymnal.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

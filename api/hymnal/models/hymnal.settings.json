@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hymnals",
+  "info": {
+    "name": "hymnal",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "abbreviation": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "language": {
+      "model": "language"
+    },
+    "copyright": {
+      "type": "text",
+      "required": false
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "publisher": {
+      "type": "string",
+      "required": true
+    },
+    "releaseDate": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.date-stamp"
+    },
+    "hymns": {
+      "type": "component",
+      "repeatable": true,
+      "component": "hymn.hymn"
+    }
+  }
+}

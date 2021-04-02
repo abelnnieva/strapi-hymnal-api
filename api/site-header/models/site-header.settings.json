@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_headers",
+  "info": {
+    "name": "siteHeader"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "brand": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.brand"
+    },
+    "menuItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link"
+    }
+  }
+}

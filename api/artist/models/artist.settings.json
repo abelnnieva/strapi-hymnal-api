@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artists",
+  "info": {
+    "name": "artist",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "tracks": {
+      "collection": "track",
+      "via": "artist"
+    },
+    "hymns": {
+      "via": "artist",
+      "collection": "hymn"
+    },
+    "tunes": {
+      "collection": "tune",
+      "via": "artist"
+    },
+    "birthDate": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.date-stamp"
+    },
+    "deathDate": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.date-stamp"
+    },
+    "biography": {
+      "type": "richtext"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

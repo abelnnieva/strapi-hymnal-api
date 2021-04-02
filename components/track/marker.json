@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_track_markers",
+  "info": {
+    "name": "marker",
+    "icon": "marker"
+  },
+  "options": {},
+  "attributes": {
+    "startTime": {
+      "type": "string",
+      "regex": "([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3})",
+      "required": true
+    },
+    "duration": {
+      "type": "string",
+      "regex": "([0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3})",
+      "required": true
+    },
+    "hymnLine": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

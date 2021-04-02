@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_tune_sheet_musics",
+  "info": {
+    "name": "sheetMusic",
+    "icon": "music"
+  },
+  "options": {},
+  "attributes": {
+    "language": {
+      "model": "language"
+    },
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}

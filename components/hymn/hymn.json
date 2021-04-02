@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_hymn_hymns",
+  "info": {
+    "name": "hymn",
+    "icon": "sort-numeric-down"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "integer",
+      "required": true
+    },
+    "hymn": {
+      "model": "hymn"
+    }
+  }
+}
