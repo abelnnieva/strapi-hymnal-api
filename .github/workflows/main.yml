@@ -1,11 +1,9 @@
 name: Main CI/CD
 
 on:
-  release:
+  push:
     branches:
       - main
-    types:
-      - published
 
 jobs:
   build:
