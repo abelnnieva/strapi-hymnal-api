@@ -9,23 +9,21 @@ jobs:
   build:
     name: Build stage
     runs-on: ubuntu-latest
-    outputs:
-      package-version: ${{ steps.package-version.outputs.version }}
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
         with:
           ref: main
-      - name: Extract package version
-        id: package
-        uses: Saionaro/extract-package-version@v1.0.6
       - name: Create a Docker image
-        run: docker build --tag sweethymn/api:${{ steps.package.outputs.version }} .
+        run: docker build --tag sweethymn/api .
   release:
     needs: build
     name: Release to repository
     runs-on: ubuntu-latest
     steps:
+      - name: Extract package version
+        id: package
+        uses: Saionaro/extract-package-version@v1.0.6
       - name: Push to Amazon ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
@@ -33,4 +31,5 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-west-3
-          image: sweethymn/api:${{ needs.build.outputs.package-version }}
+          local-image: sweethymn/api
+          image: sweethymn/api:${{ steps.package.outputs.version }}
