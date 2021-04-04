@@ -18,12 +18,12 @@ jobs:
           context: .
           file: ./Dockerfile
           tags: sweethymn/api:latest
-          outputs: type=docker,dest=/tmp/sweethymn/api.tar
+          outputs: type=docker,dest=/tmp/output.tar
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweethymn/api
-          path: /tmp/sweethymn/api.tar
+          path: /tmp/output.tar
   release:
     needs: build
     name: Release to repository
@@ -39,7 +39,7 @@ jobs:
           name: sweethymn/api
           path: /tmp
       - name: Load Docker image
-        run: docker load --input /tmp/sweethymn/api.tar
+        run: docker load --input /tmp/output.tar
       - name: Extract package version
         id: package
         uses: Saionaro/extract-package-version@v1.0.6
@@ -50,5 +50,5 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-west-3
-          local-image: sweethymn/api
+          local-image: sweethymn/api:latest
           image: sweethymn/api:${{ steps.package.outputs.version }}
