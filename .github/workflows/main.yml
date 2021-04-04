@@ -12,8 +12,18 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
-      - name: Create a Docker image
-        run: docker build --tag sweethymn/api .
+      - name: Create Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: sweethymn/api:latest
+          outputs: type=docker,dest=/tmp/sweethymn/api.tar
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sweethymn/api
+          path: /tmp/sweethymn/api.tar
   release:
     needs: build
     name: Release to repository
@@ -21,6 +31,15 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: sweethymn/api
+          path: /tmp
+      - name: Load Docker image
+        run: docker load --input /tmp/sweethymn/api.tar
       - name: Extract package version
         id: package
         uses: Saionaro/extract-package-version@v1.0.6
