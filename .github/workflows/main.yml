@@ -34,4 +34,3 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-west-3
           image: sweethymn/api:${{ needs.build.outputs.package-version }}
-          is-semver: true
