@@ -16,6 +16,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          load: true
           file: ./Dockerfile
           tags: sweethymn/api:latest
           outputs: type=docker,dest=/tmp/output.tar
