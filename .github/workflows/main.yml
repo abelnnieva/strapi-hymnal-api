@@ -1,0 +1,35 @@
+name: Main CI/CD
+
+on:
+  release:
+    branches:
+      - main
+    types:
+      - published
+
+jobs:
+  build:
+    name: Build stage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Get NPM version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+      - name: Create a Docker image
+        run: docker build --tag sweethymn/api:${{ steps.package-version.outputs.current-version }} .
+  release:
+    name: Release to repository
+    steps:
+      - name: Push to Amazon ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-3
+          image: sweethymn/api:${{ steps.package-version.outputs.current-version }}
+          is-semver: true
